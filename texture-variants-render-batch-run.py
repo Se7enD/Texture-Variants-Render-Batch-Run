@@ -167,15 +167,15 @@ class RemoveButtonOperator(bpy.types.Operator):
     def execute(self, context):
         print('####### Remove button execute #######')
 
-        for obj in bpy.context.scene.collection:
+        for i, obj in enumerate(bpy.context.scene.collection):
             print('Self id: ' + str(self.id))
             print('Obj name: ' + obj.name)
             print('Obj: ' + str(obj))
             if str(self.id) == str(obj.name):
                 print(str(self.id) + ' = ' + str(obj.name))
-                bpy.context.scene.collection.remove(self.id - 1)
+                bpy.context.scene.collection.remove(i)
+                print('Removed object no.', i + 1)
 
-        print('Removed object no.', self.id - 1)
         return {'FINISHED'}
 
 
