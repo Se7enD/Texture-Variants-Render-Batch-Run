@@ -128,7 +128,7 @@ def renderBatch(context):
             message = str(picked_object_global.name) + ' has no material'
             print(message)
 
-    print('####### Rendered images with ' + str(texture_count) + ' textures successfully! #######')
+    # print('####### Rendered images with ' + str(texture_count) + ' textures successfully! #######')
     return {'FINISHED'}
 
 
