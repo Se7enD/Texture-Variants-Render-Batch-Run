@@ -128,7 +128,7 @@ def renderBatch(context):
             message = str(picked_object_global.name) + ' has no material'
             print(message)
 
-    #print('####### Rendered images with ' + str(texture_count) + ' textures successfully! #######')
+    print('####### Rendered images with ' + str(texture_count) + ' textures successfully! #######')
     return {'FINISHED'}
 
 
@@ -148,8 +148,6 @@ class AddButtonOperator(bpy.types.Operator):
     bl_label = 'Add new object'
 
     def execute(self, context):
-        print('####### Add button execute #######')
-
         id = len(context.scene.collection)+1
         new = context.scene.collection.add()
         new.name = str(id)
@@ -165,17 +163,10 @@ class RemoveButtonOperator(bpy.types.Operator):
     id = bpy.props.IntProperty()
 
     def execute(self, context):
-        print('####### Remove button execute #######')
-
         for i, obj in enumerate(bpy.context.scene.collection):
-            print('Self id: ' + str(self.id))
-            print('Obj name: ' + obj.name)
-            print('Obj: ' + str(obj))
             if str(self.id) == str(obj.name):
-                print(str(self.id) + ' = ' + str(obj.name))
                 bpy.context.scene.collection.remove(i)
-                print('Removed object no.', i + 1)
-
+                print('Removed object at index no.', i + 1)
         return {'FINISHED'}
 
 
@@ -340,64 +331,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-
-
-# -------------------------------------------------
-
-
-#def register():
-#    bpy.utils.register_class(SceneItems)
-#    bpy.utils.register_class(AddButtonOperator)
-#    bpy.utils.register_class(RemoveButtonOperator)
-#    bpy.utils.register_class(PrintCollectionOperator)
-#    bpy.utils.register_class(ResetCollectionOperator)
-#    bpy.utils.register_class(RenderButtonOperator)
-#    bpy.utils.register_class(FancyPanel)
-#
-#    bpy.types.Scene.collection = bpy.props.CollectionProperty(type=SceneItems)
-#
-#def unregister():
-#    bpy.utils.unregister_class(SceneItems)
-#    bpy.utils.unregister_class(AddButtonOperator)
-#    bpy.utils.unregister_class(RemoveButtonOperator)
-#    bpy.utils.unregister_class(PrintCollectionOperator)
-#    bpy.utils.unregister_class(ResetCollectionOperator)
-#    bpy.utils.unregister_class(RenderButtonOperator)
-#    bpy.utils.unregister_class(FancyPanel)
-#
-#    del bpy.types.Scene.collection
-#
-#if __name__ == "__main__":
-#    register()
-
-
-# -------------------------------------------------
-
-
-#def register():
-#    bpy.utils.register_module(__name__)
-#
-#def unregister():
-#    bpy.utils.unregister_module(__name__)
-#
-#if __name__ == "__main__":
-#    register()
-
-
-# -------------------------------------------------
-
-
-#classes = (
-#    SceneItems,
-#    AddButtonOperator,
-#    RemoveButtonOperator,
-#    PrintCollectionOperator,
-#    ResetCollectionOperator,
-#    RenderButtonOperator,
-#    FancyPanel,
-#)
-
-#if __name__ == "__main__":  # only for live edit.
-#    from bpy.utils import register_class
-#    for cls in classes:
-#        register_class(cls)
